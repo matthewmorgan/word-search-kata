@@ -1,8 +1,8 @@
 import WordSearch from './word-search';
 
 
-describe('word search', ()=> {
-  test('Should accept an initial game grid as an array', ()=> {
+describe('word search', () => {
+  test('Should accept an initial game grid as an array', () => {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -19,7 +19,46 @@ describe('word search', ()=> {
     const wordSearch = new WordSearch(grid);
 
     expect(wordSearch instanceof WordSearch).toEqual(true);
-  })
+  });
+
+  test('can search for a word', () => {
+
+    const grid = [
+      "jefblpepre",
+      "camdcimgtc",
+      "oivokprjsm",
+      "pbwasqroua",
+      "rixilelhrs",
+      "wolcqlirpc",
+      "screeaumgr",
+      "alxhpburyi",
+      "jalaycalmp",
+      "clojurermt"
+    ];
+
+    // const expectedResults = {
+    //   "wordsToSearchFor": [
+    //     "clojure"
+    //   ],
+    //   "expected":         {
+    //     "clojure": {
+    //       "start": {
+    //         "column": 1,
+    //         "row":    10
+    //       },
+    //       "end":   {
+    //         "column": 7,
+    //         "row":    10
+    //       }
+    //     }
+    //   }
+    // };
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find("glasnost")).toEqual(undefined);
+
+  });
 });
 
 
