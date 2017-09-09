@@ -35,11 +35,25 @@ describe('word search', () => {
   });
 
 
-  test ('can locate a left to right word in a multi line grid', ()=> {
+  test('can locate a left to right word in a two line grid', () => {
+
+    const grid = [
+      "jefblpepre",
+      "clojurermt"
+    ];
+
+    const expectedResults = {
+      "start": [2, 1],
+      "end":   [2, 7]
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find("clojure")).toEqual(expectedResults);
 
   })
 });
-
 
 
 //   {
