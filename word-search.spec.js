@@ -36,29 +36,36 @@ describe('word search', () => {
       "clojurermt"
     ];
 
-    // const expectedResults = {
-    //   "wordsToSearchFor": [
-    //     "clojure"
-    //   ],
-    //   "expected":         {
-    //     "clojure": {
-    //       "start": {
-    //         "column": 1,
-    //         "row":    10
-    //       },
-    //       "end":   {
-    //         "column": 7,
-    //         "row":    10
-    //       }
-    //     }
-    //   }
-    // };
-
     const wordSearch = new WordSearch(grid);
 
     expect(wordSearch.find("glasnost")).toEqual(undefined);
-
   });
+
+  test('should locate words written left to right', () => {
+    const grid = [
+      "jefblpepre",
+      "camdcimgtc",
+      "oivokprjsm",
+      "pbwasqroua",
+      "rixilelhrs",
+      "wolcqlirpc",
+      "screeaumgr",
+      "alxhpburyi",
+      "jalaycalmp",
+      "clojurermt"
+    ];
+
+    const expectedResults = {
+      "start": [10, 1],
+      "end":   [10, 7]
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+  });
+
 });
 
 
