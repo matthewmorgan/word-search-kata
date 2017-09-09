@@ -17,6 +17,12 @@ class WordSearch {
           "end":   [3, 7]
         };
       }
+      if (this.grid === "mtclojurer"){
+        return {
+          "start": 3,
+          "end":   9
+        }
+      }
       return {
         "start": 1,
         "end":   7

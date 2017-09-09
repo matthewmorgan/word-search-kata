@@ -34,6 +34,21 @@ describe('word search', () => {
     expect(wordSearch.find("clojure")).toEqual(expectedResults);
   });
 
+  test('can locate a left to right word in a different position', () => {
+
+    const grid = "mtclojurer";
+
+    const expectedResults = {
+      "start": 3,
+      "end":   9
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+
+  });
 
   test('can locate a left to right word in a two line grid', () => {
 
@@ -55,6 +70,26 @@ describe('word search', () => {
   });
 
   test('can locate a left to right word in a three line grid', () => {
+
+    const grid = [
+      "camdcimgtc",
+      "jefblpepre",
+      "clojurermt",
+    ];
+
+    const expectedResults = {
+      "start": [3, 1],
+      "end":   [3, 7]
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+
+  });
+
+  test('can locate a left to right word in a different position', () => {
 
     const grid = [
       "camdcimgtc",
