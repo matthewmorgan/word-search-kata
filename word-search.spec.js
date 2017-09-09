@@ -52,7 +52,28 @@ describe('word search', () => {
 
     expect(wordSearch.find("clojure")).toEqual(expectedResults);
 
-  })
+  });
+
+  test('can locate a left to right word in a three line grid', () => {
+
+    const grid = [
+      "camdcimgtc",
+      "jefblpepre",
+      "clojurermt",
+    ];
+
+    const expectedResults = {
+      "start": [3, 1],
+      "end":   [3, 7]
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+
+  });
+
 });
 
 
