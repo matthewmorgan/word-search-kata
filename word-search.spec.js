@@ -2,19 +2,8 @@ import WordSearch from './word-search';
 
 
 describe('word search', () => {
-  test('Should accept an initial game grid as an array', () => {
-    const grid = [
-      "jefblpepre",
-      "camdcimgtc",
-      "oivokprjsm",
-      "pbwasqroua",
-      "rixilelhrs",
-      "wolcqlirpc",
-      "screeaumgr",
-      "alxhpburyi",
-      "jalaycalmp",
-      "clojurermt"
-    ];
+  test('Should accept an initial game grid', () => {
+    const grid = "jefblpepre";
 
     const wordSearch = new WordSearch(grid);
 
@@ -23,41 +12,20 @@ describe('word search', () => {
 
   test('can search for a word', () => {
 
-    const grid = [
-      "jefblpepre",
-      "camdcimgtc",
-      "oivokprjsm",
-      "pbwasqroua",
-      "rixilelhrs",
-      "wolcqlirpc",
-      "screeaumgr",
-      "alxhpburyi",
-      "jalaycalmp",
-      "clojurermt"
-    ];
+    const grid = "jefblpepre";
+
 
     const wordSearch = new WordSearch(grid);
 
     expect(wordSearch.find("glasnost")).toEqual(undefined);
   });
 
-  test('should locate words written left to right', () => {
-    const grid = [
-      "jefblpepre",
-      "camdcimgtc",
-      "oivokprjsm",
-      "pbwasqroua",
-      "rixilelhrs",
-      "wolcqlirpc",
-      "screeaumgr",
-      "alxhpburyi",
-      "jalaycalmp",
-      "clojurermt"
-    ];
+  test('should locate a word written left to right', () => {
+    const grid = "clojurermt";
 
     const expectedResults = {
-      "start": [10, 1],
-      "end":   [10, 7]
+      "start": 1,
+      "end":   7
     };
 
 
@@ -66,48 +34,14 @@ describe('word search', () => {
     expect(wordSearch.find("clojure")).toEqual(expectedResults);
   });
 
+
+  test ('can locate a left to right word in a multi line grid', ()=> {
+
+  })
 });
 
 
-// {
-//   "exercise": "word-search",
-//     "version": "1.0.0",
-//     "comments": [
-//   "Grid rows and columns are 1-indexed.",
-//   "An expected value of -1 indicates that some sort of failure should occur."
-// ],
-//     "cases": [
-//   {
-//     "description": "Should locate words written left to right",
-//     "property": "search",
-//     "grid": [
-//       "jefblpepre",
-//       "camdcimgtc",
-//       "oivokprjsm",
-//       "pbwasqroua",
-//       "rixilelhrs",
-//       "wolcqlirpc",
-//       "screeaumgr",
-//       "alxhpburyi",
-//       "jalaycalmp",
-//       "clojurermt"
-//     ],
-//     "wordsToSearchFor": [
-//       "clojure"
-//     ],
-//     "expected": {
-//       "clojure": {
-//         "start": {
-//           "column": 1,
-//           "row": 10
-//         },
-//         "end": {
-//           "column": 7,
-//           "row": 10
-//         }
-//       }
-//     }
-//   },
+
 //   {
 //     "description": "Should locate words written right to left",
 //     "property": "search",
