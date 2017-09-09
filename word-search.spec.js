@@ -1,7 +1,7 @@
 import WordSearch from './word-search';
 
 
-describe('word search', () => {
+describe('single line grids', () => {
   test('Should accept an initial game grid', () => {
     const grid = "jefblpepre";
 
@@ -50,6 +50,41 @@ describe('word search', () => {
 
   });
 
+  test('can locate a different left to right word', () => {
+
+    const grid = "javamtzlplx";
+
+    const expectedResults = {
+      "start": 1,
+      "end":   4
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find("java")).toEqual(expectedResults);
+
+  });
+
+  test('can locate that different left to right word in a different position', () => {
+
+    const grid = "xjavamtzlpl";
+
+    const expectedResults = {
+      "start": 2,
+      "end":   5
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find("java")).toEqual(expectedResults);
+
+  });
+
+});
+
+describe('multi line grids', () => {
   test('can locate a left to right word in a two line grid', () => {
 
     const grid = [
@@ -60,6 +95,25 @@ describe('word search', () => {
     const expectedResults = {
       "start": [2, 1],
       "end":   [2, 7]
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+
+  });
+
+  test('can locate a left to right word in a different position in a two line grid', () => {
+
+    const grid = [
+      "jefblpepre",
+      "tclojurerm"
+    ];
+
+    const expectedResults = {
+      "start": [2, 2],
+      "end":   [2, 8]
     };
 
 
@@ -89,17 +143,24 @@ describe('word search', () => {
 
   });
 
-  test('can locate a left to right word in a different position', () => {
+  test('can locate a left to right word in a ten line grid', () => {
 
     const grid = [
-      "camdcimgtc",
       "jefblpepre",
-      "clojurermt",
+      "camdcimgtc",
+      "oivokprjsm",
+      "pbwasqroua",
+      "rixilelhrs",
+      "wolcqlirpc",
+      "screeaumgr",
+      "alxhpburyi",
+      "jalaycalmp",
+      "clojurermt"
     ];
 
     const expectedResults = {
-      "start": [3, 1],
-      "end":   [3, 7]
+      "start": [10, 1],
+      "end":   [10, 7]
     };
 
 
@@ -109,8 +170,33 @@ describe('word search', () => {
 
   });
 
-});
+  test('can locate a left to right word in a ten line grid', () => {
 
+    const grid = [
+      "jefblpepre",
+      "camdcimgtc",
+      "oivokprjsm",
+      "pbwasqroua",
+      "rixilelhrs",
+      "wolcqlirpc",
+      "screeaumgr",
+      "alxhpburyi",
+      "jalaycalmp",
+      "clojurermt"
+    ];
+
+    const expectedResults = {
+      "start": [10, 1],
+      "end":   [10, 7]
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+
+  });
+});
 
 //   {
 //     "description": "Should locate words written right to left",
