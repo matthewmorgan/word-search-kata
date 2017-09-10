@@ -1,58 +1,56 @@
 class WordSearch {
   constructor(grid) {
-    this.grid = grid;
+    this.grid = Array.isArray(grid) ? [...grid] : [grid];
   }
-
 
   find(target) {
-    const findStart = (target, gridLine) => {
-      if (gridLine === undefined) {
-        return this.grid.indexOf(target);
-      } else {
-        return this.grid[gridLine].indexOf(target);
+    //step through each word in target list.  First try to find forward, then try to find backward
+    let allWords = Array.isArray(target) ? [...target] : [target];
+    return allWords.reduce((result, word) => {
+      result[word] = this.findForward(word);
+      if (!result[word]) {
+        result[word] = this.findBackward(word);
       }
+      return result;
+    }, {});
+  }
+
+  findBackward(target) {
+    const findStart = (target, gridLine) => {
+      const reversedTarget = [...target].reverse().join('');
+      return this.grid[gridLine].indexOf(reversedTarget);
     };
 
-    if (Array.isArray(target)){
-      //need to find multiple words
-      let results = {};
-      for (let word of target){
-        let line = 0;
-        while (line < this.grid.length) {
-          if (findStart(word, line) !== -1) {
-            results[word] = {
-              "start": [line + 1, findStart(word, line) + 1],
-              "end":   [line + 1, findStart(word, line) + word.length]
-            }
-          }
-          line++;
+    let line = 0;
+    while (line < this.grid.length) {
+      if (findStart(target, line) !== -1) {
+        return {
+          "start": [line + 1, findStart(target, line) + target.length],
+          "end":   [line + 1, findStart(target, line) + 1]
         }
       }
-      return results;
+      line++;
     }
-    if (Array.isArray(this.grid)) {
-      let line = 0;
-      while (line < this.grid.length) {
-        if (findStart(target, line) !== -1) {
-          return {
-            "start": [line + 1, findStart(target, line) + 1],
-            "end":   [line + 1, findStart(target, line) + target.length]
-          }
+
+    return undefined;
+  }
+
+  findForward(target) {
+    const findStart = (target, gridLine) => this.grid[gridLine].indexOf(target);
+
+    let line = 0;
+    while (line < this.grid.length) {
+      if (findStart(target, line) !== -1) {
+        return {
+          "start": [line + 1, findStart(target, line) + 1],
+          "end":   [line + 1, findStart(target, line) + target.length]
         }
-        line++;
       }
-      return undefined;
+      line++;
     }
-
-    if (findStart(target) === -1) {
-      return undefined;
-    }
-    return {
-      "start": findStart(target) + 1,
-      "end":   findStart(target) + target.length
-    }
-
+    return undefined;
   }
 }
+
 
 export default WordSearch;

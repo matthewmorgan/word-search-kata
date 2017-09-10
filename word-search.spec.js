@@ -17,15 +17,17 @@ describe('single line grids', () => {
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("glasnost")).toEqual(undefined);
+    expect(wordSearch.find("glasnost")).toEqual({"glasnost": undefined});
   });
 
   test('should locate a word written left to right', () => {
     const grid = "clojurermt";
 
     const expectedResults = {
-      "start": 1,
-      "end":   7
+      "clojure": {
+        "start": [1, 1],
+        "end":   [1, 7]
+      }
     };
 
 
@@ -39,8 +41,10 @@ describe('single line grids', () => {
     const grid = "mtclojurer";
 
     const expectedResults = {
-      "start": 3,
-      "end":   9
+      "clojure": {
+        "start": [1, 3],
+        "end":   [1, 9]
+      }
     };
 
 
@@ -55,8 +59,10 @@ describe('single line grids', () => {
     const grid = "javamtzlplx";
 
     const expectedResults = {
-      "start": 1,
-      "end":   4
+      "java": {
+        "start": [1, 1],
+        "end":   [1, 4]
+      }
     };
 
 
@@ -71,8 +77,10 @@ describe('single line grids', () => {
     const grid = "xjavamtzlp";
 
     const expectedResults = {
-      "start": 2,
-      "end":   5
+      "java": {
+        "start": [1, 2],
+        "end":   [1, 5]
+      }
     };
 
 
@@ -93,8 +101,10 @@ describe('multi line grids', () => {
     ];
 
     const expectedResults = {
-      "start": [2, 1],
-      "end":   [2, 7]
+      "clojure": {
+        "start": [2, 1],
+        "end":   [2, 7]
+      }
     };
 
 
@@ -112,8 +122,10 @@ describe('multi line grids', () => {
     ];
 
     const expectedResults = {
-      "start": [2, 2],
-      "end":   [2, 8]
+      "clojure": {
+        "start": [2, 2],
+        "end":   [2, 8]
+      }
     };
 
 
@@ -132,8 +144,10 @@ describe('multi line grids', () => {
     ];
 
     const expectedResults = {
-      "start": [3, 1],
-      "end":   [3, 7]
+      "clojure": {
+        "start": [3, 1],
+        "end":   [3, 7]
+      }
     };
 
 
@@ -159,8 +173,10 @@ describe('multi line grids', () => {
     ];
 
     const expectedResults = {
-      "start": [10, 1],
-      "end":   [10, 7]
+      "clojure": {
+        "start": [10, 1],
+        "end":   [10, 7]
+      }
     };
 
 
@@ -186,8 +202,10 @@ describe('multi line grids', () => {
     ];
 
     const expectedResults = {
-      "start": [10, 1],
-      "end":   [10, 7]
+      "clojure": {
+        "start": [10, 1],
+        "end":   [10, 7]
+      }
     };
 
 
@@ -213,8 +231,10 @@ describe('multi line grids', () => {
     ];
 
     const expectedResults = {
-      "start": [9, 1],
-      "end":   [9, 7]
+      "clojure": {
+        "start": [9, 1],
+        "end":   [9, 7]
+      }
     };
 
 
@@ -240,8 +260,10 @@ describe('multi line grids', () => {
     ];
 
     const expectedResults = {
-      "start": [7, 1],
-      "end":   [7, 5]
+      "scree": {
+        "start": [7, 1],
+        "end":   [7, 5]
+      }
     };
 
 
@@ -288,6 +310,59 @@ describe('can find multiple words', () => {
 
   });
 });
+
+describe('different directions', () => {
+
+  // test('Should locate words written right to left', ()=> {
+  //   const grid = [
+  //     "jefblpepre",
+  //     "camdcimgtc",
+  //     "oivokprjsm",
+  //     "pbwasqroua",
+  //     "rixilelhrs",
+  //     "wolcqlirpc",
+  //     "screeaumgr",
+  //     "alxhpburyi",
+  //     "jalaycalmp",
+  //     "clojurermt"
+  //   ];
+  //
+  //   const expectedResults = {
+  //     "clojure": {
+  //       "start": [10, 1],
+  //       "end":   [10, 7]
+  //     },
+  //     "elixir":    {
+  //       "start": [6, 5],
+  //       "end":   [6, 1]
+  //     }
+  //   };
+  //
+  //
+  //   const wordSearch = new WordSearch(grid);
+  //
+  //   expect(wordSearch.find(["elixir", "clojure"])).toEqual(expectedResults);
+  //
+  // })
+
+  test('should locate a single word written right to left', () => {
+    const grid = "rixilelhrs";
+
+    const expectedResults = {
+      "elixir": {
+        "start": [1, 6],
+        "end":   [1, 1]
+      }
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find("elixir")).toEqual(expectedResults);
+
+  })
+});
+
 
 //   {
 //     "description": "Should locate words written right to left",
