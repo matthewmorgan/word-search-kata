@@ -56,37 +56,37 @@ describe('single line grids', () => {
 
   test('can locate a different left to right word', () => {
 
-    const grid = "javamtzlplx";
+    const grid = "coffeelplx";
 
     const expectedResults = {
-      "java": {
+      "coffee": {
         "start": [1, 1],
-        "end":   [1, 4]
+        "end":   [1, 6]
       }
     };
 
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("java")).toEqual(expectedResults);
+    expect(wordSearch.find("coffee")).toEqual(expectedResults);
 
   });
 
   test('can locate that different left to right word in a different position', () => {
 
-    const grid = "xjavamtzlp";
+    const grid = "xcoffeezlp";
 
     const expectedResults = {
-      "java": {
+      "coffee": {
         "start": [1, 2],
-        "end":   [1, 5]
+        "end":   [1, 7]
       }
     };
 
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("java")).toEqual(expectedResults);
+    expect(wordSearch.find("coffee")).toEqual(expectedResults);
 
   });
 
@@ -330,7 +330,7 @@ describe('different directions', () => {
 
     expect(wordSearch.find("elixir")).toEqual(expectedResults);
 
-  })
+  });
 
   test('should locate multiple words written in different horizontal directions', ()=> {
       const grid = [
@@ -362,7 +362,7 @@ describe('different directions', () => {
 
       expect(wordSearch.find(["elixir", "clojure"])).toEqual(expectedResults);
 
-  })
+  });
 });
 
 //   {
