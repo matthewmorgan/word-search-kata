@@ -365,123 +365,85 @@ describe('different directions', () => {
   });
 });
 
-//   {
-//     "description": "Should locate words written top to bottom",
-//     "property": "search",
-//     "grid": [
-//       "jefblpepre",
-//       "camdcimgtc",
-//       "oivokprjsm",
-//       "pbwasqroua",
-//       "rixilelhrs",
-//       "wolcqlirpc",
-//       "screeaumgr",
-//       "alxhpburyi",
-//       "jalaycalmp",
-//       "clojurermt"
-//     ],
-//     "wordsToSearchFor": [
-//       "clojure",
-//       "elixir",
-//       "ecmascript"
-//     ],
-//     "expected": {
-//       "clojure": {
-//         "start": {
-//           "column": 1,
-//           "row": 10
-//         },
-//         "end": {
-//           "column": 7,
-//           "row": 10
-//         }
-//       },
-//       "elixir": {
-//         "start": {
-//           "column": 6,
-//           "row": 5
-//         },
-//         "end": {
-//           "column": 1,
-//           "row": 5
-//         }
-//       },
-//       "ecmascript": {
-//         "start": {
-//           "column": 10,
-//           "row": 1
-//         },
-//         "end": {
-//           "column": 10,
-//           "row": 10
-//         }
-//       }
-//     }
-//   },
-//   {
-//     "description": "Should locate words written bottom to top",
-//     "property": "search",
-//     "grid": [
-//       "jefblpepre",
-//       "camdcimgtc",
-//       "oivokprjsm",
-//       "pbwasqroua",
-//       "rixilelhrs",
-//       "wolcqlirpc",
-//       "screeaumgr",
-//       "alxhpburyi",
-//       "jalaycalmp",
-//       "clojurermt"
-//     ],
-//     "wordsToSearchFor": [
-//       "clojure",
-//       "elixir",
-//       "ecmascript",
-//       "rust"
-//     ],
-//     "expected": {
-//       "clojure": {
-//         "start": {
-//           "column": 1,
-//           "row": 10
-//         },
-//         "end": {
-//           "column": 7,
-//           "row": 10
-//         }
-//       },
-//       "elixir": {
-//         "start": {
-//           "column": 6,
-//           "row": 5
-//         },
-//         "end": {
-//           "column": 1,
-//           "row": 5
-//         }
-//       },
-//       "ecmascript": {
-//         "start": {
-//           "column": 10,
-//           "row": 1
-//         },
-//         "end": {
-//           "column": 10,
-//           "row": 10
-//         }
-//       },
-//       "rust": {
-//         "start": {
-//           "column": 9,
-//           "row": 5
-//         },
-//         "end": {
-//           "column": 9,
-//           "row": 2
-//         }
-//       }
-//     }
-//   },
+describe('vertical directions', ()=> {
+  test('should locate words written top to bottom', ()=> {
+    const grid = [
+      "jefblpepre",
+      "camdcimgtc",
+      "oivokprjsm",
+      "pbwasqroua",
+      "rixilelhrs",
+      "wolcqlirpc",
+      "screeaumgr",
+      "alxhpburyi",
+      "jalaycalmp",
+      "clojurermt"
+    ];
+
+    const expectedResults = {
+      "clojure": {
+        "start": [10, 1],
+        "end":   [10, 7]
+      },
+      "elixir":    {
+        "start": [5, 6],
+        "end":   [5, 1]
+      },
+      "ecmascript": {
+        "start": [1, 10],
+        "end":   [10, 10]
+      }
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find(["elixir", "clojure", "ecmascript"])).toEqual(expectedResults);
+
+  });
+
+  test('should locate words written bottom to top', ()=> {
+    const grid = [
+      "jefblpepre",
+      "camdcimgtc",
+      "oivokprjsm",
+      "pbwasqroua",
+      "rixilelhrs",
+      "wolcqlirpc",
+      "screeaumgr",
+      "alxhpburyi",
+      "jalaycalmp",
+      "clojurermt"
+    ];
+
+    const expectedResults = {
+      "clojure": {
+        "start": [10, 1],
+        "end":   [10, 7]
+      },
+      "elixir":    {
+        "start": [5, 6],
+        "end":   [5, 1]
+      },
+      "ecmascript": {
+        "start": [1, 10],
+        "end":   [10, 10]
+      },
+      "rust":{
+        "start": [5, 9],
+        "end":   [2, 9]
+      }
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find(["elixir", "clojure", "ecmascript", "rust"])).toEqual(expectedResults);
+
+  });
+
+});
+
 //   {
 //     "description": "Should locate words written top left to bottom right",
 //     "property": "search",
