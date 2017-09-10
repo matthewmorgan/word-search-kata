@@ -23,7 +23,7 @@ clojurermt
 There are several programming languages hidden in the above square.
 
 Words can be hidden in all kinds of directions: left-to-right, right-to-left,
-vertical and diagonal.
+vertical ~~and diagonal~~.
 
 Given a puzzle and a list of words return the location of the first and last
 letter of each word.
