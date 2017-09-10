@@ -13,6 +13,23 @@ class WordSearch {
       }
     };
 
+    if (Array.isArray(target)){
+      //need to find multiple words
+      let results = {};
+      for (let word of target){
+        let line = 0;
+        while (line < this.grid.length) {
+          if (findStart(word, line) !== -1) {
+            results[word] = {
+              "start": [line + 1, findStart(word, line) + 1],
+              "end":   [line + 1, findStart(word, line) + word.length]
+            }
+          }
+          line++;
+        }
+      }
+      return results;
+    }
     if (Array.isArray(this.grid)) {
       let line = 0;
       while (line < this.grid.length) {

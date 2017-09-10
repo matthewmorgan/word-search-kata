@@ -254,40 +254,40 @@ describe('multi line grids', () => {
 });
 
 
-// describe('can find multiple words', () => {
-//   test('can find two words written left to right', () => {
-//     const grid = [
-//       "jefblpepre",
-//       "camdcimgtc",
-//       "oivokprjsm",
-//       "pbwasqroua",
-//       "rixilelhrs",
-//       "wolcqlirpc",
-//       "screeaumgr",
-//       "alxhpburyi",
-//       "jalaycalmp",
-//       "clojurermt",
-//       "xjavamtzlp"
-//     ];
-//
-//     const expectedResults = {
-//       "clojure": {
-//         "start": [10, 1],
-//         "end":   [10, 7]
-//       },
-//       "java":    {
-//         "start": [11, 2],
-//         "end":   [11, 5]
-//       }
-//     };
-//
-//
-//     const wordSearch = new WordSearch(grid);
-//
-//     expect(wordSearch.find(["java", "clojure"])).toEqual(expectedResults);
-//
-//   });
-// });
+describe('can find multiple words', () => {
+  test('can find two words written left to right', () => {
+    const grid = [
+      "jefblpepre",
+      "camdcimgtc",
+      "oivokprjsm",
+      "pbwasqroua",
+      "rixilelhrs",
+      "wolcqlirpc",
+      "screeaumgr",
+      "alxhpburyi",
+      "jalaycalmp",
+      "clojurermt",
+      "xjavamtzlp"
+    ];
+
+    const expectedResults = {
+      "clojure": {
+        "start": [10, 1],
+        "end":   [10, 7]
+      },
+      "java":    {
+        "start": [11, 2],
+        "end":   [11, 5]
+      }
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find(["java", "clojure"])).toEqual(expectedResults);
+
+  });
+});
 
 //   {
 //     "description": "Should locate words written right to left",
