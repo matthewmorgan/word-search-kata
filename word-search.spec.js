@@ -313,37 +313,7 @@ describe('can find multiple words', () => {
 
 describe('different directions', () => {
 
-  // test('Should locate words written right to left', ()=> {
-  //   const grid = [
-  //     "jefblpepre",
-  //     "camdcimgtc",
-  //     "oivokprjsm",
-  //     "pbwasqroua",
-  //     "rixilelhrs",
-  //     "wolcqlirpc",
-  //     "screeaumgr",
-  //     "alxhpburyi",
-  //     "jalaycalmp",
-  //     "clojurermt"
-  //   ];
-  //
-  //   const expectedResults = {
-  //     "clojure": {
-  //       "start": [10, 1],
-  //       "end":   [10, 7]
-  //     },
-  //     "elixir":    {
-  //       "start": [6, 5],
-  //       "end":   [6, 1]
-  //     }
-  //   };
-  //
-  //
-  //   const wordSearch = new WordSearch(grid);
-  //
-  //   expect(wordSearch.find(["elixir", "clojure"])).toEqual(expectedResults);
-  //
-  // })
+
 
   test('should locate a single word written right to left', () => {
     const grid = "rixilelhrs";
@@ -361,51 +331,40 @@ describe('different directions', () => {
     expect(wordSearch.find("elixir")).toEqual(expectedResults);
 
   })
+
+  test('should locate multiple words written in different horizontal directions', ()=> {
+      const grid = [
+        "jefblpepre",
+        "camdcimgtc",
+        "oivokprjsm",
+        "pbwasqroua",
+        "rixilelhrs",
+        "wolcqlirpc",
+        "screeaumgr",
+        "alxhpburyi",
+        "jalaycalmp",
+        "clojurermt"
+      ];
+
+      const expectedResults = {
+        "clojure": {
+          "start": [10, 1],
+          "end":   [10, 7]
+        },
+        "elixir":    {
+          "start": [5, 6],
+          "end":   [5, 1]
+        }
+      };
+
+
+      const wordSearch = new WordSearch(grid);
+
+      expect(wordSearch.find(["elixir", "clojure"])).toEqual(expectedResults);
+
+  })
 });
 
-
-//   {
-//     "description": "Should locate words written right to left",
-//     "property": "search",
-//     "grid": [
-//       "jefblpepre",
-//       "camdcimgtc",
-//       "oivokprjsm",
-//       "pbwasqroua",
-//       "rixilelhrs",
-//       "wolcqlirpc",
-//       "screeaumgr",
-//       "alxhpburyi",
-//       "jalaycalmp",
-//       "clojurermt"
-//     ],
-//     "wordsToSearchFor": [
-//       "clojure",
-//       "elixir"
-//     ],
-//     "expected": {
-//       "clojure": {
-//         "start": {
-//           "column": 1,
-//           "row": 10
-//         },
-//         "end": {
-//           "column": 7,
-//           "row": 10
-//         }
-//       },
-//       "elixir": {
-//         "start": {
-//           "column": 6,
-//           "row": 5
-//         },
-//         "end": {
-//           "column": 1,
-//           "row": 5
-//         }
-//       }
-//     }
-//   },
 //   {
 //     "description": "Should locate words written top to bottom",
 //     "property": "search",

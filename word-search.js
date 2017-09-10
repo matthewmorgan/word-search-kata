@@ -7,10 +7,7 @@ class WordSearch {
     //step through each word in target list.  First try to find forward, then try to find backward
     let allWords = Array.isArray(target) ? [...target] : [target];
     return allWords.reduce((result, word) => {
-      result[word] = this.findForward(word);
-      if (!result[word]) {
-        result[word] = this.findBackward(word);
-      }
+      result[word] = this.findForward(word) || this.findBackward(word);
       return result;
     }, {});
   }
