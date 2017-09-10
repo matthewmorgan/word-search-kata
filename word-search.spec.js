@@ -10,7 +10,7 @@ describe('single line grids', () => {
     expect(wordSearch instanceof WordSearch).toEqual(true);
   });
 
-  test('can search for a word', () => {
+  test('can accept a target search word', () => {
 
     const grid = "jefblpepre";
 
@@ -68,7 +68,7 @@ describe('single line grids', () => {
 
   test('can locate that different left to right word in a different position', () => {
 
-    const grid = "xjavamtzlpl";
+    const grid = "xjavamtzlp";
 
     const expectedResults = {
       "start": 2,
@@ -196,7 +196,98 @@ describe('multi line grids', () => {
     expect(wordSearch.find("clojure")).toEqual(expectedResults);
 
   });
+
+  test('can locate a left to right word in a different position in a ten line grid', () => {
+
+    const grid = [
+      "jefblpepre",
+      "camdcimgtc",
+      "oivokprjsm",
+      "pbwasqroua",
+      "rixilelhrs",
+      "wolcqlirpc",
+      "screeaumgr",
+      "alxhpburyi",
+      "clojurermt",
+      "jalaycalmp"
+    ];
+
+    const expectedResults = {
+      "start": [9, 1],
+      "end":   [9, 7]
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+
+  });
+
+  test('can locate a different left to right word in a ten line grid', () => {
+
+    const grid = [
+      "jefblpepre",
+      "camdcimgtc",
+      "oivokprjsm",
+      "pbwasqroua",
+      "rixilelhrs",
+      "wolcqlirpc",
+      "screeaumgr",
+      "alxhpburyi",
+      "clojurermt",
+      "jalaycalmp"
+    ];
+
+    const expectedResults = {
+      "start": [7, 1],
+      "end":   [7, 5]
+    };
+
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find("scree")).toEqual(expectedResults);
+
+  });
+
 });
+
+
+// describe('can find multiple words', () => {
+//   test('can find two words written left to right', () => {
+//     const grid = [
+//       "jefblpepre",
+//       "camdcimgtc",
+//       "oivokprjsm",
+//       "pbwasqroua",
+//       "rixilelhrs",
+//       "wolcqlirpc",
+//       "screeaumgr",
+//       "alxhpburyi",
+//       "jalaycalmp",
+//       "clojurermt",
+//       "xjavamtzlp"
+//     ];
+//
+//     const expectedResults = {
+//       "clojure": {
+//         "start": [10, 1],
+//         "end":   [10, 7]
+//       },
+//       "java":    {
+//         "start": [11, 2],
+//         "end":   [11, 5]
+//       }
+//     };
+//
+//
+//     const wordSearch = new WordSearch(grid);
+//
+//     expect(wordSearch.find(["java", "clojure"])).toEqual(expectedResults);
+//
+//   });
+// });
 
 //   {
 //     "description": "Should locate words written right to left",

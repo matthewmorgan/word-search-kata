@@ -3,37 +3,29 @@ class WordSearch {
     this.grid = grid;
   }
 
-  findStart(target){
+  findStart(target, gridLine){
+    if (gridLine === undefined){
       return this.grid.indexOf(target);
+    } else {
+      return this.grid[gridLine].indexOf(target);
+    }
   }
 
   find(target) {
-    if (target === "clojure") {
       if (Array.isArray(this.grid)) {
-        if (this.grid.length === 2) {
-          if (this.grid[1] === "tclojurerm") {
+        let line = 0;
+        while (line < this.grid.length){
+          if (this.findStart(target, line) !== -1){
             return {
-              "start": [2, 2],
-              "end":   [2, 8]
+              "start": [line + 1, this.findStart(target, line) + 1],
+              "end": [line + 1, this.findStart(target, line) + target.length]
             }
           }
-          return {
-            "start": [2, 1],
-            "end":   [2, 7]
-          };
-        } else if (this.grid.length === 10) {
-          return {
-            "start": [10, 1],
-            "end":   [10, 7]
-          }
+          line++;
         }
-        return {
-          "start": [3, 1],
-          "end":   [3, 7]
-        };
+        return undefined;
       }
 
-    }
     if (this.findStart(target) === -1){
       return undefined;
     }
