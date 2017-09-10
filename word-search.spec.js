@@ -178,34 +178,6 @@ describe('multi line grids', () => {
 
   });
 
-  test('can locate a left to right word in a ten line grid', () => {
-
-    const grid = [
-      "jefblpepre",
-      "camdcimgtc",
-      "oivokprjsm",
-      "pbwasqroua",
-      "rixilelhrs",
-      "wolcqlirpc",
-      "screeaumgr",
-      "alxhpburyi",
-      "jalaycalmp",
-      "clojurermt"
-    ];
-
-    const expectedResults = {
-      "clojure": {
-        "start": [10, 1],
-        "end":   [10, 7]
-      }
-    };
-
-    const wordSearch = new WordSearch(grid);
-
-    expect(wordSearch.find("clojure")).toEqual(expectedResults);
-
-  });
-
   test('can locate a left to right word in a different position in a ten line grid', () => {
 
     const grid = [
