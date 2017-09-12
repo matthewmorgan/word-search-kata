@@ -3,7 +3,7 @@ import WordSearch from './word-search';
 
 describe('single line grids', () => {
   test('Should accept an initial game grid', () => {
-    const grid = "jefblpepre";
+    const grid = ["jefblpepre"];
 
     const wordSearch = new WordSearch(grid);
 
@@ -12,15 +12,15 @@ describe('single line grids', () => {
 
   xtest('can accept a target search word', () => {
 
-    const grid = "jefblpepre";
+    const grid = ["jefblpepre"];
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("glasnost")).toEqual({"glasnost": undefined});
+    expect(wordSearch.find(["glasnost"])).toEqual({"glasnost": undefined});
   });
 
   xtest('should locate a word written left to right', () => {
-    const grid = "clojurermt";
+    const grid = ["clojurermt"];
 
     const expectedResults = {
       "clojure": {
@@ -32,12 +32,12 @@ describe('single line grids', () => {
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+    expect(wordSearch.find(["clojure"])).toEqual(expectedResults);
   });
 
   xtest('can locate a left to right word in a different position', () => {
 
-    const grid = "mtclojurer";
+    const grid = ["mtclojurer"];
 
     const expectedResults = {
       "clojure": {
@@ -48,13 +48,13 @@ describe('single line grids', () => {
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+    expect(wordSearch.find(["clojure"])).toEqual(expectedResults);
 
   });
 
   xtest('can locate a different left to right word', () => {
 
-    const grid = "coffeelplx";
+    const grid = ["coffeelplx"];
 
     const expectedResults = {
       "coffee": {
@@ -65,13 +65,13 @@ describe('single line grids', () => {
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("coffee")).toEqual(expectedResults);
+    expect(wordSearch.find(["coffee"])).toEqual(expectedResults);
 
   });
 
   xtest('can locate that different left to right word in a different position', () => {
 
-    const grid = "xcoffeezlp";
+    const grid = ["xcoffeezlp"];
 
     const expectedResults = {
       "coffee": {
@@ -82,7 +82,7 @@ describe('single line grids', () => {
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("coffee")).toEqual(expectedResults);
+    expect(wordSearch.find(["coffee"])).toEqual(expectedResults);
 
   });
 
@@ -105,7 +105,7 @@ describe('multi line grids', () => {
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+    expect(wordSearch.find(["clojure"])).toEqual(expectedResults);
 
   });
 
@@ -125,7 +125,7 @@ describe('multi line grids', () => {
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+    expect(wordSearch.find(["clojure"])).toEqual(expectedResults);
 
   });
 
@@ -146,7 +146,7 @@ describe('multi line grids', () => {
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+    expect(wordSearch.find(["clojure"])).toEqual(expectedResults);
 
   });
 
@@ -174,7 +174,7 @@ describe('multi line grids', () => {
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+    expect(wordSearch.find(["clojure"])).toEqual(expectedResults);
 
   });
 
@@ -202,7 +202,7 @@ describe('multi line grids', () => {
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("clojure")).toEqual(expectedResults);
+    expect(wordSearch.find(["clojure"])).toEqual(expectedResults);
 
   });
 
@@ -230,7 +230,7 @@ describe('multi line grids', () => {
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("scree")).toEqual(expectedResults);
+    expect(wordSearch.find(["scree"])).toEqual(expectedResults);
 
   });
 
@@ -287,7 +287,7 @@ describe('different directions', () => {
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find("elixir")).toEqual(expectedResults);
+    expect(wordSearch.find(["elixir"])).toEqual(expectedResults);
 
   });
 
