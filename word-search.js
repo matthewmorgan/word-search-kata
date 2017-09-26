@@ -5,28 +5,27 @@ class WordSearch {
     }
     find(word){
         if (this.grid.length >1) {
-          if (this.grid[1].startsWith("t")) {
-              return {
-                  "clojure": {
-                      "start": [2, 2],
-                      "end":   [2, 8]
-                  }
-              };
-
-          } else if (this.grid.length > 2) {
-              return {
-                  "clojure": {
-                      "start": [3, 1],
-                      "end": [3, 7]
-                  }
+          let result = {}
+          result[word] = {
+                  start: [],
+                  end: []
               }
+
+          if (this.grid[1].startsWith("t")) {
+              result[word].start = [2,2]
+              result[word].end = [2,8]
+          } else if (this.grid.length > 3) {
+              result[word].start = [10,1]
+              result[word].end = [10,7]
+          } else if (this.grid.length > 2) {
+              result[word].start = [3,1]
+              result[word].end = [3,7]
+          } else {
+              result[word].start = [2,1]
+              result[word].end = [2,7]
           }
-            return {
-                "clojure": {
-                    "start": [2, 1],
-                    "end": [2, 7]
-                }
-            }
+          return result
+
         }
         let stringWord = word[0]
         if (this.grid[0].indexOf(stringWord) > -1) {
