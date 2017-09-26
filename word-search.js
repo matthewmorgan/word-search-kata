@@ -3,7 +3,11 @@ class WordSearch {
         this.grid = grid;
 
     }
-    find(word){
+    find(words){
+        return words.map((single_word)=> this.findWord(single_word) )
+    }
+
+    findWord(word){
         if (this.grid.length >1) {
           let result = {}
           result[word] = {

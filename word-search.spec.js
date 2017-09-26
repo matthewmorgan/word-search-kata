@@ -266,7 +266,7 @@ describe('multi line grids', () => {
 
 
 describe('can find multiple words', () => {
-  xtest('can find two words written left to right', () => {
+  test('can find two words written left to right', () => {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -304,7 +304,7 @@ describe('different directions', () => {
 
 
   xtest('should locate a single word written right to left', () => {
-    const grid = "rixilelhrs";
+    const grid = ["rixilelhrs"];
 
     const expectedResults = {
       "elixir": {
