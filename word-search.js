@@ -16,9 +16,9 @@ class WordSearch {
               result[word].end = [2,8]
           } else if (this.grid.length > 3) {
               for (let row=0; row<this.grid.length; row++) {
-                  if (this.grid[row] === "clojurermt") {
+                  if (this.grid[row].indexOf(word) > -1) {
                       result[word].start = [row+1, 1]
-                      result[word].end = [row+1, 7]
+                      result[word].end = [row+1, word[0].length]
                   }
               }
           } else if (this.grid.length > 2) {
