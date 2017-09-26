@@ -129,7 +129,7 @@ describe('multi line grids', () => {
 
   });
 
-  xtest('can locate a left to right word in a three line grid', () => {
+  test('can locate a left to right word in a three line grid', () => {
 
     const grid = [
       "camdcimgtc",

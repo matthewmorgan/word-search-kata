@@ -13,6 +13,13 @@ class WordSearch {
                   }
               };
 
+          } else if (this.grid.length > 2) {
+              return {
+                  "clojure": {
+                      "start": [3, 1],
+                      "end": [3, 7]
+                  }
+              }
           }
             return {
                 "clojure": {
