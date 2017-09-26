@@ -178,7 +178,7 @@ describe('multi line grids', () => {
 
   });
 
-  xtest('can locate a left to right word in a different position in a ten line grid', () => {
+  test('can locate a left to right word in a different position in a ten line grid', () => {
 
     const grid = [
       "jefblpepre",
@@ -205,6 +205,34 @@ describe('multi line grids', () => {
     expect(wordSearch.find(["clojure"])).toEqual(expectedResults);
 
   });
+
+    test('can locate a left to right word in a different position in a ten line grid', () => {
+
+        const grid = [
+            "jefblpepre",
+            "camdcimgtc",
+            "oivokprjsm",
+            "pbwasqroua",
+            "rixilelhrs",
+            "wolcqlirpc",
+            "screeaumgr",
+            "clojurermt",
+            "alxhpburyi",
+            "jalaycalmp"
+        ];
+
+        const expectedResults = {
+            "clojure": {
+                "start": [8, 1],
+                "end":   [8, 7]
+            }
+        };
+
+        const wordSearch = new WordSearch(grid);
+
+        expect(wordSearch.find(["clojure"])).toEqual(expectedResults);
+
+    });
 
   xtest('can locate a different left to right word in a ten line grid', () => {
 

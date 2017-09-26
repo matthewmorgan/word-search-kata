@@ -15,8 +15,12 @@ class WordSearch {
               result[word].start = [2,2]
               result[word].end = [2,8]
           } else if (this.grid.length > 3) {
-              result[word].start = [10,1]
-              result[word].end = [10,7]
+              for (let row=0; row<this.grid.length; row++) {
+                  if (this.grid[row] === "clojurermt") {
+                      result[word].start = [row+1, 1]
+                      result[word].end = [row+1, 7]
+                  }
+              }
           } else if (this.grid.length > 2) {
               result[word].start = [3,1]
               result[word].end = [3,7]
@@ -24,6 +28,8 @@ class WordSearch {
               result[word].start = [2,1]
               result[word].end = [2,7]
           }
+
+
           return result
 
         }
