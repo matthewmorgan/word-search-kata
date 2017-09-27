@@ -226,6 +226,26 @@ describe('word search', () => {
     expect(w.find(["bat", "dog", "cat", "fish", "bird", "iguana"])).toEqual(expected);
   });
 
+  test('can find a right-to-left word too', ()=> {
+    const grid = [
+      "xxbat",
+      "catzz",
+      "ydogy",
+      "fisho",
+      "qdrib"
+    ];
+
+    const w = new WordSearch(grid);
+
+    const expected = {
+      bird: {
+        start: [5,5],
+        end: [5,2]
+      }
+    };
+
+    expect(w.find(["bird"])).toEqual(expected);
+  });
 
 
 });
