@@ -6,7 +6,10 @@ class WordSearch {
 
   find(words) {
     return words
-        .map(word => this.findOneWord(word))
+        .map(word => {
+          const oneWordResult = this.findOneWord(word);
+          return oneWordResult[word] ? oneWordResult : this.findOneWordBackwards(word);
+        })
         .reduce((acc, oneWord) => {
           return Object.assign(acc, oneWord);
         }, {});
@@ -30,6 +33,23 @@ class WordSearch {
     return result;
   }
 
+  findOneWordBackwards(word){
+    const result = {};
+    const reversedWord = [...word].reverse().join('');
+    for (let i = 0; i < this.grid.length; i++) {
+      const row = this.grid[i];
+      if (row.indexOf(reversedWord) !== -1) {
+        const end = row.indexOf(reversedWord) + 1;
+        const start = end + reversedWord.length - 1;
+        result[word] = {
+          start: [i + 1, start],
+          end:   [i + 1, end]
+        };
+        return result;
+      }
+    }
+    return result;
+  }
 
   validateGridDimensions(grid) {
     const rowCount = grid.length;
