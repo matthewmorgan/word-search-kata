@@ -10,5 +10,14 @@ describe('word search', ()=> {
     ];
 
     const w = new WordSearch(grid);
+  });
+
+  test('throws if the grid is not square', ()=> {
+    const grid = [
+        "cat",
+        "dog"
+    ];
+
+    expect(()=> new WordSearch(grid)).toThrow();
   })
 });
