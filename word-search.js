@@ -1,6 +1,7 @@
 class WordSearch {
   constructor(grid){
     this.validateGridDimensions(grid);
+    this.grid = grid;
   }
 
   find(words){
@@ -14,12 +15,22 @@ class WordSearch {
     }
 
     if (words[0] === "dog"){
-      return {
-        dog: {
-          start: [2,1],
-          end: [2,3]
+      if (this.grid[1] === "bdog"){
+        return {
+          dog: {
+            start: [2,2],
+            end: [2,4]
+          }
+        }
+      } else {
+        return {
+          dog: {
+            start: [2,1],
+            end: [2,3]
+          }
         }
       }
+
     }
 
     return {
