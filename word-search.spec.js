@@ -18,7 +18,7 @@ describe('word search', () => {
       "dog"
     ];
 
-    expect(() => new WordSearch(grid)).toThrow();
+    expect(() => new WordSearch(grid)).toThrow(new Error("Grid is not square."));
   });
 
   test('throws if the grid is otherwise not square', () => {
@@ -28,7 +28,23 @@ describe('word search', () => {
       "giraffe"
     ];
 
-    expect(() => new WordSearch(grid)).toThrow();
+    expect(() => new WordSearch(grid)).toThrow(new Error("Grid is not square."));
+  });
+
+  test('find method returns the right kind of object', ()=> {
+    const grid = [
+      "cat",
+      "dog",
+      "sun"
+    ];
+
+    const w = new WordSearch(grid);
+
+    const expected = {
+      "bat": undefined
+    };
+
+    expect(w.find(["bat"])).toEqual(expected);
   })
 
 
