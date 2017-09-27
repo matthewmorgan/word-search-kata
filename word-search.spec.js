@@ -47,5 +47,24 @@ describe('word search', () => {
     expect(w.find(["bat"])).toEqual(expected);
   })
 
+  test('find can find a word', ()=> {
+    const grid = [
+      "cat",
+      "dog",
+      "sun"
+    ];
+
+    const w = new WordSearch(grid);
+
+    const expected = {
+      cat: {
+        start: [1,1],
+        end: [1,3]
+      }
+    };
+
+    expect(w.find(["cat"])).toEqual(expected);
+  })
+
 
 });

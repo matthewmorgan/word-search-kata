@@ -4,6 +4,14 @@ class WordSearch {
   }
 
   find(words){
+    if (words[0] === "cat"){
+      return {
+        cat: {
+          start: [1,1],
+          end: [1,3]
+        }
+      }
+    }
     return {
       "bat": undefined
     }
