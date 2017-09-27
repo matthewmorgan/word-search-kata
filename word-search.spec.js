@@ -188,6 +188,43 @@ describe('word search', () => {
     expect(w.find(["bat", "dog", "cat", "fish", "bird"])).toEqual(expected);
   });
 
+  test('can handle many words, and still handle one that is missing', ()=> {
+    const grid = [
+      "xxbat",
+      "catzz",
+      "ydogy",
+      "fisho",
+      "birdq"
+    ];
+
+    const w = new WordSearch(grid);
+
+    const expected = {
+      bat: {
+        start: [1,3],
+        end: [1,5]
+      },
+      cat: {
+        start: [2,1],
+        end: [2,3]
+      },
+      dog: {
+        start: [3,2],
+        end: [3,4]
+      },
+      fish: {
+        start: [4,1],
+        end: [4,4]
+      },
+      bird: {
+        start: [5,1],
+        end: [5,4]
+      },
+      iguana: undefined
+    };
+
+    expect(w.find(["bat", "dog", "cat", "fish", "bird", "iguana"])).toEqual(expected);
+  });
 
 
 
