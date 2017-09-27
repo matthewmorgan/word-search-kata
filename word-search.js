@@ -5,7 +5,14 @@ class WordSearch {
   }
 
   find(words) {
-    const word = words[0];
+    return words
+        .map(word => this.findOneWord(word))
+        .reduce((acc, oneWord) => {
+          return Object.assign(acc, oneWord);
+        }, {});
+  }
+
+  findOneWord(word){
     const result = {};
 
     for (let i = 0; i < this.grid.length; i++) {
@@ -22,6 +29,7 @@ class WordSearch {
     }
     return result;
   }
+
 
   validateGridDimensions(grid) {
     const rowCount = grid.length;
