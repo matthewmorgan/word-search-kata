@@ -85,6 +85,26 @@ describe('word search', () => {
     expect(w.find(["dog"])).toEqual(expected);
   });
 
+  test('find can find a different word', ()=> {
+    const grid = [
+      "catf",
+      "bdog",
+      "suno",
+      "fish"
+    ];
+
+    const w = new WordSearch(grid);
+
+    const expected = {
+      dog: {
+        start: [2,2],
+        end: [2,4]
+      }
+    };
+
+    expect(w.find(["dog"])).toEqual(expected);
+  });
+
 
 
 });
