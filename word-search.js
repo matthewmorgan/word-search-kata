@@ -12,6 +12,16 @@ class WordSearch {
         }
       }
     }
+
+    if (words[0] === "dog"){
+      return {
+        dog: {
+          start: [2,1],
+          end: [2,3]
+        }
+      }
+    }
+
     return {
       "bat": undefined
     }

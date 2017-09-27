@@ -45,7 +45,7 @@ describe('word search', () => {
     };
 
     expect(w.find(["bat"])).toEqual(expected);
-  })
+  });
 
   test('find can find a word', ()=> {
     const grid = [
@@ -64,7 +64,27 @@ describe('word search', () => {
     };
 
     expect(w.find(["cat"])).toEqual(expected);
-  })
+  });
+
+  test('find can find a different word', ()=> {
+    const grid = [
+      "cat",
+      "dog",
+      "sun"
+    ];
+
+    const w = new WordSearch(grid);
+
+    const expected = {
+      dog: {
+        start: [2,1],
+        end: [2,3]
+      }
+    };
+
+    expect(w.find(["dog"])).toEqual(expected);
+  });
+
 
 
 });
