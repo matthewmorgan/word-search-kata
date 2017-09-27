@@ -10,12 +10,10 @@ class WordSearch {
           const oneWordResult = this.findOneWord(word);
           return oneWordResult[word] ? oneWordResult : this.findOneWordBackwards(word);
         })
-        .reduce((acc, oneWord) => {
-          return Object.assign(acc, oneWord);
-        }, {});
+        .reduce((acc, oneWord) => Object.assign(acc, oneWord), {});
   }
 
-  findOneWord(word){
+  findOneWord(word) {
     const result = {};
 
     for (let i = 0; i < this.grid.length; i++) {
@@ -33,7 +31,7 @@ class WordSearch {
     return result;
   }
 
-  findOneWordBackwards(word){
+  findOneWordBackwards(word) {
     const result = {};
     const reversedWord = [...word].reverse().join('');
     for (let i = 0; i < this.grid.length; i++) {
