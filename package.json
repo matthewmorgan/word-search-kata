@@ -9,9 +9,6 @@
     "url": "git+https://github.com/matthewmorgan/word-search-kata.git"
   },
   "devDependencies": {
-    "babel-jest": "^20.0.1",
-    "babel-plugin-transform-builtin-extend": "^1.1.2",
-    "babel-preset-env": "^1.4.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.2.0",
@@ -23,21 +20,6 @@
   "jest": {
     "modulePathIgnorePatterns": [
       "package.json"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "env"
-    ],
-    "plugins": [
-      [
-        "babel-plugin-transform-builtin-extend",
-        {
-          "globals": [
-            "Error"
-          ]
-        }
-      ]
     ]
   },
   "scripts": {

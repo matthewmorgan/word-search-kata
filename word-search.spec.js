@@ -1,4 +1,4 @@
-import WordSearch from './word-search';
+const WordSearch =require('./word-search');
 
 describe('word search', () => {
 
