@@ -34,50 +34,49 @@ class WordSearch {
         .filter(word => result[word])
         .map(word => {
           let coords = result[word];
-          const flipped = {};
-          flipped[word] = {
-            start: coords.start.reverse(),
-            end:   coords.end.reverse()
+          return {
+            [word]: {
+              start: coords.start.reverse(),
+              end:   coords.end.reverse()
+            }
           };
-          return flipped;
         })
         .reduce((acc, result) => Object.assign(acc, result), {});
   }
 
   findOneWord(word, grid) {
-    const result = {};
-
     for (let i = 0; i < grid.length; i++) {
       const row = grid[i];
       if (row.indexOf(word) !== -1) {
         const start = row.indexOf(word) + 1;
         const end = start + word.length - 1;
-        result[word] = {
-          start: [i + 1, start],
-          end:   [i + 1, end]
+        return {
+          [word]: {
+            start: [i + 1, start],
+            end:   [i + 1, end]
+          }
         };
-        return result;
       }
     }
-    return result;
+    return {};
   }
 
   findOneWordBackwards(word, grid) {
-    const result = {};
     const reversedWord = [...word].reverse().join('');
     for (let i = 0; i < grid.length; i++) {
       const row = grid[i];
       if (row.indexOf(reversedWord) !== -1) {
         const end = row.indexOf(reversedWord) + 1;
         const start = end + reversedWord.length - 1;
-        result[word] = {
-          start: [i + 1, start],
-          end:   [i + 1, end]
+        return {
+          [word]: {
+            start: [i + 1, start],
+            end:   [i + 1, end]
+          }
         };
-        return result;
       }
     }
-    return result;
+    return {};
   }
 
   flip(grid) {
