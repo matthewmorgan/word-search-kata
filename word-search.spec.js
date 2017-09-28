@@ -31,7 +31,7 @@ describe('word search', () => {
     expect(() => new WordSearch(grid)).toThrow(new Error("Grid is not square."));
   });
 
-  test('find method returns the right kind of object', ()=> {
+  test('find method returns the right kind of object', () => {
     const grid = [
       "cat",
       "dog",
@@ -47,7 +47,7 @@ describe('word search', () => {
     expect(w.find(["bat"])).toEqual(expected);
   });
 
-  test('find can find a word', ()=> {
+  test('find can find a word', () => {
     const grid = [
       "cat",
       "dog",
@@ -58,15 +58,15 @@ describe('word search', () => {
 
     const expected = {
       cat: {
-        start: [1,1],
-        end: [1,3]
+        start: [1, 1],
+        end:   [1, 3]
       }
     };
 
     expect(w.find(["cat"])).toEqual(expected);
   });
 
-  test('find can find a different word', ()=> {
+  test('find can find a different word', () => {
     const grid = [
       "cat",
       "dog",
@@ -77,15 +77,15 @@ describe('word search', () => {
 
     const expected = {
       dog: {
-        start: [2,1],
-        end: [2,3]
+        start: [2, 1],
+        end:   [2, 3]
       }
     };
 
     expect(w.find(["dog"])).toEqual(expected);
   });
 
-  test('find can find a different word', ()=> {
+  test('find can find a different word in a different position', () => {
     const grid = [
       "catf",
       "bdog",
@@ -97,15 +97,15 @@ describe('word search', () => {
 
     const expected = {
       dog: {
-        start: [2,2],
-        end: [2,4]
+        start: [2, 2],
+        end:   [2, 4]
       }
     };
 
     expect(w.find(["dog"])).toEqual(expected);
   });
 
-  test('uh oh now there is really a bat', ()=> {
+  test('uh oh now there is really a bat', () => {
     const grid = [
       "bat",
       "cat",
@@ -116,15 +116,15 @@ describe('word search', () => {
 
     const expected = {
       bat: {
-        start: [1,1],
-        end: [1,3]
+        start: [1, 1],
+        end:   [1, 3]
       }
     };
 
     expect(w.find(["bat"])).toEqual(expected);
   });
 
-  test('can find many words', ()=> {
+  test('can find many words', () => {
     const grid = [
       "bat",
       "cat",
@@ -135,23 +135,23 @@ describe('word search', () => {
 
     const expected = {
       bat: {
-        start: [1,1],
-        end: [1,3]
+        start: [1, 1],
+        end:   [1, 3]
       },
       cat: {
-        start: [2,1],
-        end: [2,3]
+        start: [2, 1],
+        end:   [2, 3]
       },
       dog: {
-        start: [3,1],
-        end: [3,3]
+        start: [3, 1],
+        end:   [3, 3]
       }
     };
 
     expect(w.find(["bat", "dog", "cat"])).toEqual(expected);
   });
 
-  test('can find many words in a bigger grid', ()=> {
+  test('can find many words in a bigger grid', () => {
     const grid = [
       "xxbat",
       "catzz",
@@ -163,32 +163,32 @@ describe('word search', () => {
     const w = new WordSearch(grid);
 
     const expected = {
-      bat: {
-        start: [1,3],
-        end: [1,5]
+      bat:  {
+        start: [1, 3],
+        end:   [1, 5]
       },
-      cat: {
-        start: [2,1],
-        end: [2,3]
+      cat:  {
+        start: [2, 1],
+        end:   [2, 3]
       },
-      dog: {
-        start: [3,2],
-        end: [3,4]
+      dog:  {
+        start: [3, 2],
+        end:   [3, 4]
       },
       fish: {
-        start: [4,1],
-        end: [4,4]
+        start: [4, 1],
+        end:   [4, 4]
       },
       bird: {
-        start: [5,1],
-        end: [5,4]
+        start: [5, 1],
+        end:   [5, 4]
       }
     };
 
     expect(w.find(["bat", "dog", "cat", "fish", "bird"])).toEqual(expected);
   });
 
-  test('can handle many words, and still handle one that is missing', ()=> {
+  test('can handle many words, and still handle one that is missing', () => {
     const grid = [
       "xxbat",
       "catzz",
@@ -200,25 +200,25 @@ describe('word search', () => {
     const w = new WordSearch(grid);
 
     const expected = {
-      bat: {
-        start: [1,3],
-        end: [1,5]
+      bat:    {
+        start: [1, 3],
+        end:   [1, 5]
       },
-      cat: {
-        start: [2,1],
-        end: [2,3]
+      cat:    {
+        start: [2, 1],
+        end:   [2, 3]
       },
-      dog: {
-        start: [3,2],
-        end: [3,4]
+      dog:    {
+        start: [3, 2],
+        end:   [3, 4]
       },
-      fish: {
-        start: [4,1],
-        end: [4,4]
+      fish:   {
+        start: [4, 1],
+        end:   [4, 4]
       },
-      bird: {
-        start: [5,1],
-        end: [5,4]
+      bird:   {
+        start: [5, 1],
+        end:   [5, 4]
       },
       iguana: undefined
     };
@@ -226,7 +226,7 @@ describe('word search', () => {
     expect(w.find(["bat", "dog", "cat", "fish", "bird", "iguana"])).toEqual(expected);
   });
 
-  test('can find a right-to-left word too', ()=> {
+  test('can find a right-to-left word too', () => {
     const grid = [
       "xxbat",
       "catzz",
@@ -239,13 +239,31 @@ describe('word search', () => {
 
     const expected = {
       bird: {
-        start: [5,5],
-        end: [5,2]
+        start: [5, 5],
+        end:   [5, 2]
       }
     };
 
     expect(w.find(["bird"])).toEqual(expected);
   });
 
+  test('can find a top-to-bottom word', () => {
+    const grid = [
+      "bxx",
+      "azz",
+      "tyy"
+    ];
+
+    const w = new WordSearch(grid);
+
+    const expected = {
+      bat: {
+        start: [1, 1],
+        end:   [3, 1]
+      }
+    };
+
+    expect(w.find(["bat"])).toEqual(expected);
+  });
 
 });
