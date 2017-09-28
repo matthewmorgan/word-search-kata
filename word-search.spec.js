@@ -304,6 +304,24 @@ describe('word search', () => {
     expect(w.find(["car"])).toEqual(expected);
   });
 
+  test('can find yet some other top-to-bottom word', () => {
+    const grid = [
+      "bxx",
+      "azz",
+      "ryy"
+    ];
+
+    const w = new WordSearch(grid);
+
+    const expected = {
+      bar: {
+        start: [1, 1],
+        end:   [3, 1]
+      }
+    };
+
+    expect(w.find(["bar"])).toEqual(expected);
+  });
 
 
 });
