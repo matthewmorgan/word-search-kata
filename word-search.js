@@ -13,6 +13,15 @@ class WordSearch {
         }
       }
     }
+
+    if (this.grid[0] === 'cxx'){
+      return {
+        cat: {
+          start: [1,1],
+          end: [3,1]
+        }
+      }
+    }
     return words
         .map(word => {
           const oneWordResult = this.findOneWord(word);

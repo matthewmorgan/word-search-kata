@@ -266,4 +266,24 @@ describe('word search', () => {
     expect(w.find(["bat"])).toEqual(expected);
   });
 
+  test('can find a top-to-bottom word', () => {
+    const grid = [
+      "cxx",
+      "azz",
+      "tyy"
+    ];
+
+    const w = new WordSearch(grid);
+
+    const expected = {
+      cat: {
+        start: [1, 1],
+        end:   [3, 1]
+      }
+    };
+
+    expect(w.find(["cat"])).toEqual(expected);
+  });
+
+
 });
