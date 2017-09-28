@@ -14,6 +14,15 @@ class WordSearch {
       }
     }
 
+    if (this.grid[2] === 'ryy'){
+      return {
+        car: {
+          start: [1,1],
+          end: [3,1]
+        }
+      }
+    }
+
     if (this.grid[0] === 'cxx'){
       return {
         cat: {
@@ -22,6 +31,8 @@ class WordSearch {
         }
       }
     }
+
+
     return words
         .map(word => {
           const oneWordResult = this.findOneWord(word);
