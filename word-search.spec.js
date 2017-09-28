@@ -324,4 +324,23 @@ describe('word search', () => {
   });
 
 
+  test('can find a bottom-to-top word', () => {
+    const grid = [
+      "txx",
+      "azz",
+      "byy"
+    ];
+
+    const w = new WordSearch(grid);
+
+    const expected = {
+      tab: {
+        start: [1, 1],
+        end:   [3, 1]
+      }
+    };
+
+    expect(w.find(["tab"])).toEqual(expected);
+  });
+
 });

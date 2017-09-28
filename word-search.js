@@ -21,8 +21,13 @@ class WordSearch {
       return rightToLeft;
     }
     let topToBottom = this.findOneWord(word, this.flip(this.grid));
-    return this.flipCoordinates(topToBottom);
+    if (topToBottom[word]) {
+      return this.flipCoordinates(topToBottom);
+    }
+    let bottomToTop = this.findOneWordBackwards(word, this.flip(this.grid));
+    return this.flipCoordinates(bottomToTop);
   }
+
 
   flipCoordinates(result) {
     return Object.keys(result)
