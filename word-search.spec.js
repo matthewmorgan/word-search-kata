@@ -343,4 +343,35 @@ describe('word search', () => {
     expect(w.find(["tab"])).toEqual(expected);
   });
 
+  test('can find words in all directions', () => {
+    const grid = [
+      "tac",
+      "azz",
+      "bot"
+    ];
+
+    const w = new WordSearch(grid);
+
+    const expected = {
+      tab: {
+        start: [1, 1],
+        end:   [3, 1]
+      },
+      bat: {
+        start: [3, 1],
+        end:   [1, 1]
+      },
+      cat: {
+        start: [1, 3],
+        end:   [1, 1]
+      },
+      bot: {
+        start: [3, 1],
+        end:   [3, 3]
+      }
+    };
+
+    expect(w.find(["tab", "bat", "cat", "bot"])).toEqual(expected);
+  });
+
 });
