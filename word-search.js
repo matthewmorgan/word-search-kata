@@ -103,4 +103,4 @@ class WordSearch {
 }
 
 
-export default WordSearch;
+module.exports = WordSearch;
