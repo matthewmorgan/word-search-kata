@@ -34,12 +34,10 @@ class WordSearch {
         .filter(word => result[word])
         .map(word => {
           let coords = result[word];
-          coords.start = coords.start.reverse();
-          coords.end = coords.end.reverse();
           const flipped = {};
           flipped[word] = {
-            start: coords.start,
-            end:   coords.end
+            start: coords.start.reverse(),
+            end:   coords.end.reverse()
           };
           return flipped;
         })
