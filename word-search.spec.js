@@ -266,7 +266,7 @@ describe('word search', () => {
     expect(w.find(["bat"])).toEqual(expected);
   });
 
-  test('can find a top-to-bottom word', () => {
+  test('can find a different top-to-bottom word', () => {
     const grid = [
       "cxx",
       "azz",
@@ -284,6 +284,26 @@ describe('word search', () => {
 
     expect(w.find(["cat"])).toEqual(expected);
   });
+
+  test('can find yet another top-to-bottom word', () => {
+    const grid = [
+      "cxx",
+      "azz",
+      "ryy"
+    ];
+
+    const w = new WordSearch(grid);
+
+    const expected = {
+      car: {
+        start: [1, 1],
+        end:   [3, 1]
+      }
+    };
+
+    expect(w.find(["car"])).toEqual(expected);
+  });
+
 
 
 });
