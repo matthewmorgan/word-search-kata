@@ -31,31 +31,31 @@ class WordSearch {
     };
   }
 
+
   findOneWord(word, grid) {
-    for (let i = 0; i < grid.length; i++) {
-      const row = grid[i];
-      if (row.indexOf(word) !== -1) {
-        const start = row.indexOf(word) + 1;
-        const end = start + word.length - 1;
-        return {
-          start: [i + 1, start],
-          end:   [i + 1, end]
-        };
-      }
+    let rowIndex = 0;
+    let start = undefined;
+    let end = undefined;
+
+    function getCoords(startCol) {
+      return [[rowIndex + 1, startCol], [rowIndex + 1, startCol + word.length - 1]];
     }
-    const reversedWord = [...word].reverse().join('');
-    for (let i = 0; i < grid.length; i++) {
-      const row = grid[i];
-      if (row.indexOf(reversedWord) !== -1) {
-        const end = row.indexOf(reversedWord) + 1;
-        const start = end + word.length - 1;
-        return {
-          start: [i + 1, start],
-          end:   [i + 1, end]
-        };
+
+    while (rowIndex < grid.length) {
+      let startCol = 1 + grid[rowIndex].indexOf(word);
+      if (startCol) {
+        [start, end] = getCoords(startCol);
+      } else {
+        startCol = 1 + grid[rowIndex].indexOf([...word].reverse().join(''));
+        if (startCol) {
+          [end, start] = getCoords(startCol);
+        }
       }
+      if (start && end) {
+        return {'start': start, 'end': end};
+      }
+      rowIndex++;
     }
-    return undefined;
   }
 
 
