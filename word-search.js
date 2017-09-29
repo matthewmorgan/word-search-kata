@@ -12,12 +12,12 @@ class WordSearch {
 
 
   findWordInSomeDirection(word) {
-    const leftToRight = this.findOneWord(word, this.grid);
-    if (leftToRight) {
-      return leftToRight;
+    const horizontalWord = this.findOneWord(word, this.grid);
+    if (horizontalWord) {
+      return horizontalWord;
     }
-    let topToBottom = this.findOneWord(word, this.flip(this.grid));
-    return this.flipCoordinates(topToBottom);
+    const verticalWord = this.findOneWord(word, this.flip(this.grid));
+    return this.flipCoordinates(verticalWord);
   }
 
 
