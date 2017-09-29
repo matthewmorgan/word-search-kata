@@ -6,14 +6,14 @@ class WordSearch {
 
   find(words) {
     return words
-        .map(word => this.findWordInSomeDirection(word))
+        .map(word => ({[word]: this.findWordInSomeDirection(word)}))
         .reduce((acc, oneWord) => Object.assign(acc, oneWord), {});
   }
 
 
   findWordInSomeDirection(word) {
     const leftToRight = this.findOneWord(word, this.grid);
-    if (leftToRight[word]) {
+    if (leftToRight) {
       return leftToRight;
     }
     let topToBottom = this.findOneWord(word, this.flip(this.grid));
@@ -21,19 +21,14 @@ class WordSearch {
   }
 
 
-  flipCoordinates(result) {
-    return Object.keys(result)
-        .filter(word => result[word])
-        .map(word => {
-          let coords = result[word];
-          return {
-            [word]: {
-              start: coords.start.reverse(),
-              end:   coords.end.reverse()
-            }
-          };
-        })
-        .reduce((acc, result) => Object.assign(acc, result), {});
+  flipCoordinates(coords) {
+    if (!coords) {
+      return undefined;
+    }
+    return {
+      start: coords.start.reverse(),
+      end:   coords.end.reverse()
+    };
   }
 
   findOneWord(word, grid) {
@@ -43,10 +38,8 @@ class WordSearch {
         const start = row.indexOf(word) + 1;
         const end = start + word.length - 1;
         return {
-          [word]: {
-            start: [i + 1, start],
-            end:   [i + 1, end]
-          }
+          start: [i + 1, start],
+          end:   [i + 1, end]
         };
       }
     }
@@ -57,14 +50,12 @@ class WordSearch {
         const end = row.indexOf(reversedWord) + 1;
         const start = end + word.length - 1;
         return {
-          [word]: {
-            start: [i + 1, start],
-            end:   [i + 1, end]
-          }
+          start: [i + 1, start],
+          end:   [i + 1, end]
         };
       }
     }
-    return {};
+    return undefined;
   }
 
 
