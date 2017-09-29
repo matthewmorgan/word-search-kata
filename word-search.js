@@ -16,16 +16,8 @@ class WordSearch {
     if (leftToRight[word]) {
       return leftToRight;
     }
-    const rightToLeft = this.findOneWordBackwards(word, this.grid);
-    if (rightToLeft[word]) {
-      return rightToLeft;
-    }
     let topToBottom = this.findOneWord(word, this.flip(this.grid));
-    if (topToBottom[word]) {
-      return this.flipCoordinates(topToBottom);
-    }
-    let bottomToTop = this.findOneWordBackwards(word, this.flip(this.grid));
-    return this.flipCoordinates(bottomToTop);
+    return this.flipCoordinates(topToBottom);
   }
 
 
@@ -58,10 +50,7 @@ class WordSearch {
         };
       }
     }
-    return {};
-  }
 
-  findOneWordBackwards(word, grid) {
     const reversedWord = [...word].reverse().join('');
     for (let i = 0; i < grid.length; i++) {
       const row = grid[i];
@@ -78,6 +67,7 @@ class WordSearch {
     }
     return {};
   }
+
 
   flip(grid) {
     const newGrid = [];
