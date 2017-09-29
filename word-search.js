@@ -50,13 +50,12 @@ class WordSearch {
         };
       }
     }
-
     const reversedWord = [...word].reverse().join('');
     for (let i = 0; i < grid.length; i++) {
       const row = grid[i];
       if (row.indexOf(reversedWord) !== -1) {
         const end = row.indexOf(reversedWord) + 1;
-        const start = end + reversedWord.length - 1;
+        const start = end + word.length - 1;
         return {
           [word]: {
             start: [i + 1, start],
