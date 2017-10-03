@@ -1,5 +1,9 @@
 import WordSearch from './word-search';
 
+function assertEquals(expected, found) {
+  expect(Object.keys(found).sort()).toEqual(Object.keys(expected).sort());
+  expect(found).toEqual(expected);
+}
 
 describe('single line grids', () => {
   test('Should accept an initial game grid', () => {
@@ -10,11 +14,22 @@ describe('single line grids', () => {
     expect(wordSearch instanceof WordSearch).toEqual(true);
   });
 
-  test('Should accept an initial game grid', () => {
+  test('Should not find the word cat', () => {
     const grid = ['dog'];
 
     const wordSearch = new WordSearch(grid);
 
-    expect(wordSearch.find(['cat'])).toEqual({'cat': undefined});
+    const found = wordSearch.find(['cat']);
+
+    assertEquals({'cat': undefined}, found)
+  });
+
+  test('Should not find cat or fish', () => {
+    const grid = ['dog'];
+
+    const wordSearch = new WordSearch(grid);
+    const found = wordSearch.find(['cat']);
+
+    assertEquals({'cat': undefined, 'fish': undefined}, found);
   });
 });
