@@ -2,4 +2,4 @@ class WordSearch {
 
 }
 
-// export default WordSearch;
+export default WordSearch;
