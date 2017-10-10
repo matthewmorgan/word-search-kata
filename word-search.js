@@ -8,7 +8,7 @@ class WordSearch {
       return {
         [words[0]]: {
           start: [1, 1],
-          end: [1, 3]
+          end: [1, words[0].length]
         }
       }
     }
