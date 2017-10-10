@@ -82,4 +82,14 @@ describe('single line grids', () => {
     assertEquals({'fish': {start:[1,2], end:[1,5]}}, found);
   })
 
+  test('Should find a dog and a goo', ()=> {
+    const grid = ['dogoo'];
+
+
+    const wordSearch = new WordSearch(grid);
+    const found = wordSearch.find(['dog', 'goo']);
+
+    assertEquals({'dog': {start:[1,1], end:[1,3]},'goo': {start:[1,3], end:[1,5]}}, found);
+  })
+
 });
