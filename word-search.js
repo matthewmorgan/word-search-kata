@@ -1,16 +1,7 @@
 class WordSearch {
 
   find(words) {
-    if (words.length === 2){
-      return {
-        'cat': undefined,
-        'fish': undefined
-      }
-    }
-
-    return {
-      [words[0]]: undefined
-    }
+    return words.reduce((acc, word) => Object.assign(acc, {[word]:undefined}), {})
   }
 
 }
