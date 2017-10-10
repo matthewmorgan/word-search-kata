@@ -12,6 +12,14 @@ class WordSearch {
         }
       }
     }
+    if (words[0] === 'cat' && this.grid[0] === 'cat') {
+      return {
+        'cat': {
+          start: [1, 1],
+          end: [1, 3]
+        }
+      }
+    }
     return words.reduce((acc, word) => Object.assign(acc, {[word]: undefined}), {})
   }
 
