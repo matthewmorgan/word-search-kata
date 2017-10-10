@@ -1,92 +1,162 @@
 class WordSearch {
-  constructor(grid) {
-    this.grid = Array.isArray(grid) ? [...grid] : [grid];
-  }
+    constructor(grid) {
+        this.grid = grid;
+    }
 
-  find(target) {
-    let allWords = Array.isArray(target) ? [...target] : [target];
-    return allWords.reduce((result, word) => {
-      result[word] =
-             this.findForward(word, this.grid)
-          || this.findBackward(word, this.grid)
-          || this.findTopToBottom(word, rotateLeft(this.grid));
-      return result;
-    }, {});
-  }
+    find(words) {
+        return words
+            .map(word => ({[word]: findWordInAnyDirection(word, this.grid)}))
+            .reduce((acc, oneWord) => Object.assign(acc, oneWord), {});
+    }
+}
 
-  findTopToBottom(target, grid) {
-    const verticalResults = this.findForward(target, grid) || this.findBackward(target, grid);
-    const arg = {};
-    arg[target] = verticalResults;
-    return transformCoordinates(arg, grid[0].length)[target];
-  }
+function findWordInAnyDirection(word, grid) {
+    return findOneWord(word, grid)
+        || flipCoordinates(findOneWord(word, flipGrid(grid)))
+        || findOneDiagonalWordTopDown(word, grid)
+        || findOneDiagonalWordBottomUp(word, grid);
+}
 
-  findBackward(target, grid) {
-    const findStart = (target, gridLine) => {
-      const reversedTarget = [...target].reverse().join('');
-      return grid[gridLine].indexOf(reversedTarget);
+function findOneWord(word, grid) {
+    let rowIndex = 0;
+    let startCol;
+    let start;
+    let end;
+
+    const getCoords = () => [[rowIndex + 1, startCol], [rowIndex + 1, startCol + word.length - 1]];
+
+    const getStartCol = (word) => 1 + grid[rowIndex].indexOf(word);
+
+    while (rowIndex < grid.length) {
+        startCol = getStartCol(word);
+        if (startCol) {
+            [start, end] = getCoords();
+        } else {
+            startCol = getStartCol([...word].reverse().join(''));
+            if (startCol) {
+                [end, start] = getCoords();
+            }
+        }
+        if (start && end) {
+            return {start, end};
+        }
+        rowIndex++;
+    }
+}
+
+function flipCoordinates(coords) {
+    if (!coords) {
+        return undefined;
+    }
+    return {
+        start: coords.start.reverse(),
+        end:   coords.end.reverse()
     };
-
-    let line = 0;
-    while (line < grid.length) {
-      if (findStart(target, line) !== -1) {
-        return {
-          "start": [line + 1, findStart(target, line) + target.length],
-          "end":   [line + 1, findStart(target, line) + 1]
-        }
-      }
-      line++;
-    }
-
-    return undefined;
-  }
-
-  findForward(target, grid) {
-    const findStart = (target, gridLine) => grid[gridLine].indexOf(target);
-
-    let line = 0;
-    while (line < grid.length) {
-      if (findStart(target, line) !== -1) {
-        return {
-          "start": [line + 1, findStart(target, line) + 1],
-          "end":   [line + 1, findStart(target, line) + target.length]
-        }
-      }
-      line++;
-    }
-    return undefined;
-  }
 }
 
-function transformCoordinates(results = [], gridWidth) {
-  const transformed = Object.keys(results)
-      .filter(word => results[word])
-      .reduce((transformed, word) => {
-        transformed[word] = {
-          "start": transformPoint(results[word]['start'], gridWidth),
-          "end":   transformPoint(results[word]['end'], gridWidth)
+function flipGrid(grid) {
+    return [...grid[0]]
+        .map((col, c) => grid.map((row, r) => grid[r][c]))
+        .map(row => row.join(''))
+}
+
+function findOneDiagonalWordTopDown(word, grid, isReversed = false) {
+    for (let r = 0; r < grid.length; r++) {
+        for (let c = 0; c < grid[r].length; c++) {
+            const possibleCoords = findAWordDiagonallyTopDown(r, c, word, grid);
+            if (possibleCoords) {
+                return formatCoordinates(possibleCoords, isReversed);
+            }
+        }
+    }
+
+    if (!isReversed) {
+        //now find the reversed version
+        const reversedWord = [...word].reverse().join('');
+        return findOneDiagonalWordTopDown(reversedWord, grid, true);
+    }
+}
+
+function formatCoordinates(coords, isReversed) {
+    return {
+        true:  {
+            start: coords.end,
+            end:   coords.start
+        },
+        false: coords
+    }[isReversed];
+}
+
+function findOneDiagonalWordBottomUp(word, grid, isReversed = false) {
+    for (let r = grid.length - 1; r > 0; r--) {
+        for (let c = 0; c < grid[r].length; c++) {
+            const possibleCoords = findAWordDiagonallyBottomUp(r, c, word, grid);
+            if (possibleCoords) {
+                return formatCoordinates(possibleCoords, isReversed);
+            }
+        }
+    }
+
+    if (!isReversed) {
+        //now find the reversed version
+        const reversedWord = [...word].reverse().join('');
+        return findOneDiagonalWordBottomUp(reversedWord, grid, true);
+    }
+}
+
+function findAWordDiagonallyTopDown(r, c, word, grid) {
+    function outOfRange(r, c, word, grid, foundLetters) {
+        return r > grid.length - word.length + foundLetters.length
+            || c > grid[r].length - word.length + foundLetters.length
+            || grid[r].length - c < word.length - foundLetters.length;
+    }
+
+    function buildCoords(startR, startC, r, c) {
+        return {
+            start: [startR, startC],
+            end:   [r + 1, c]
+        }
+    }
+
+    return diagonalFind(r, c, word, grid, 1, outOfRange, buildCoords);
+}
+
+function findAWordDiagonallyBottomUp(r, c, word, grid) {
+    function outOfRange(r, c, word, grid, foundLetters) {
+        return r < word.length - foundLetters.length - 1
+            || c > grid[r].length - word.length + foundLetters.length
+            || grid[r].length - c < word.length - foundLetters.length;
+    }
+
+    function buildCoords(startR, startC, r, c) {
+        return {
+            start: [startR, startC],
+            end:   [r + 1, c]
         };
-        return transformed;
-      }, {});
-  return transformed;
-}
-
-function transformPoint(point, gridWidth) {
-  return [point[1], gridWidth + 1 - point[0]];
-}
-
-function rotateLeft(inGrid) {
-  const grid = [];
-
-  for (let c = inGrid.length - 1; c >= 0; c--) {
-    let newRow = "";
-    for (let r = 0; r < inGrid.length; r++) {
-      newRow += inGrid[r].charAt(c);
     }
-    grid[inGrid.length - 1 - c] = newRow;
-  }
 
-  return grid;
+    return diagonalFind(r, c, word, grid, -1, outOfRange, buildCoords);
 }
 
-export default WordSearch;
+function diagonalFind(r, c, word, grid, rIncrement, outOfRange, buildCoords) {
+    let foundLetters = "";
+    let startR = r + 1;
+    let startC = c + 1;
+    for (let letter of word) {
+        if (outOfRange(r, c, word, grid, foundLetters)) {
+            return undefined;
+        }
+        let foundLetter = grid[r].charAt(c++);
+        if (foundLetter !== letter) {
+            return undefined;
+        }
+        foundLetters += foundLetter;
+        if (foundLetters === word) {
+            return buildCoords(startR, startC, r, c);
+        }
+        r += rIncrement;
+    }
+}
+
+
+module.exports = WordSearch;
