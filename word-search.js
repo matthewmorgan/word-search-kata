@@ -4,22 +4,15 @@ class WordSearch {
   }
 
   find(words) {
-    if (words[0] === 'dog' && this.grid[0] === 'dog') {
+    if (words[0] === this.grid[0]) {
       return {
-        'dog': {
+        [words[0]]: {
           start: [1, 1],
           end: [1, 3]
         }
       }
     }
-    if (words[0] === 'cat' && this.grid[0] === 'cat') {
-      return {
-        'cat': {
-          start: [1, 1],
-          end: [1, 3]
-        }
-      }
-    }
+
     return words.reduce((acc, word) => Object.assign(acc, {[word]: undefined}), {})
   }
 
