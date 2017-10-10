@@ -4,11 +4,12 @@ class WordSearch {
   }
 
   find(words) {
-    if (words[0] === this.grid[0]) {
+    const myIndex = this.grid[0].indexOf(words[0]);
+    if (myIndex > -1) {
       return {
         [words[0]]: {
-          start: [1, 1],
-          end: [1, words[0].length]
+          start: [1, myIndex + 1 ],
+          end: [1, words[0].length + myIndex]
         }
       }
     }
