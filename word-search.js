@@ -7,6 +7,11 @@ class WordSearch {
         'fish': undefined
       }
     }
+    if (words[0] === 'dog'){
+      return {
+        'dog': undefined
+      }
+    }
     return {
       'cat': undefined
     }

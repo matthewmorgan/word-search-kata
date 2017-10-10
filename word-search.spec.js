@@ -32,4 +32,14 @@ describe('single line grids', () => {
 
     assertEquals({'cat': undefined, 'fish': undefined}, found);
   });
+
+  test('Should not find a dog', ()=> {
+    const grid = ['fish'];
+
+
+    const wordSearch = new WordSearch(grid);
+    const found = wordSearch.find(['dog']);
+
+    assertEquals({'dog': undefined}, found);
+  })
 });
