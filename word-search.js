@@ -1,27 +1,23 @@
 class WordSearch {
-  constructor(grid) {
-    this.grid = grid;
-  }
+    constructor(grid) {
+        this.grid = grid;
+    }
 
-  find(words) {
-    return words.reduce((acc, word) => Object.assign(acc, findOneWord(word, this.grid)), {})
-  }
+    find(words) {
+        return words.reduce((acc, word) => Object.assign(acc, {[word]: findOneWord(word, this.grid)}), {})
+    }
 }
 
 function findOneWord(word, grid) {
-  for (let i = 0; i < grid.length; i++) {
-    let row = grid[i];
-    let myIndex = row.indexOf(word);
-    if (myIndex > -1) {
-      return {
-        [word]: {
-          start: [i + 1, myIndex + 1],
-          end: [i + 1, word.length + myIndex]
-        }
-      }
-    }
-  }
-
-  return {[word]: undefined};
+    return grid
+        .map((row, i) => ({row, viewRow: ++i}))
+        .filter(r => r.row.indexOf(word) !== -1)
+        .map(r => ({
+                start: [r.viewRow, r.row.indexOf(word) + 1],
+                end: [r.viewRow, word.length + r.row.indexOf(word)]
+            })
+        )
+        .reduce((acc, el) => el, undefined);
 }
+
 export default WordSearch;
