@@ -10,11 +10,10 @@ class WordSearch {
 
 function findOneWord(word, grid) {
     return grid
-        .map((row, i) => ({row, viewRow: ++i}))
-        .filter(r => r.row.indexOf(word) !== -1)
+        .filter(r => r.indexOf(word) !== -1)
         .map(r => ({
-                start: [r.viewRow, r.row.indexOf(word) + 1],
-                end: [r.viewRow, word.length + r.row.indexOf(word)]
+                start: [grid.indexOf(r)+1, r.indexOf(word) + 1],
+                end: [grid.indexOf(r)+1, word.length + r.indexOf(word)]
             })
         )
         .reduce((acc, el) => el, undefined);
